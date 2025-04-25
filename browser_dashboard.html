@@ -1,1 +1,120 @@
 
+
+
+
+<!--
+README:
+This file implements a Browser Environment Dashboard using JavaScript's built-in browser objects.
+It displays system and browser info, current page details, navigation tools, and dynamic styling based on screen width.
+Author: George Villareal | Course: BSIT 2B | Instructor: Arjay F. Abio
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Browser Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            color: #fff;
+            transition: background-color 0.3s ease;
+        }
+        .profile {
+            background: #333;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .info {
+            background: #444;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        button {
+            margin: 5px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            background: #008060;
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+<body onload="initialize()" onresize="applyBackgroundColor()">
+
+    <div class="profile">
+        <h2>Personal & Course Profile</h2>
+        <p><strong>Complete Name:</strong> GEORGE VILLAREAL</p>
+        <p><strong>Sex:</strong> Male</p>
+        <p><strong>Address:</strong> DIGDIGON GOA CAM,SUR</p>
+        <p><strong>Course, Year, and Section:</strong> BSIT 2B</p>
+        <p><strong>School:</strong> PARTIDO STATE UNIVERSITY</p>
+        <p><strong>Semester and Academic Year:</strong> 2nd Semester 2024-2025</p>
+        <p><strong>Subject Code and Title:</strong> PF2 EVENT DRIVEN PROGRAMMING</p>
+        <p><strong>Instructor:</strong> Arjay F. Abio</p>
+    </div>
+
+    <div class="info">
+        <h2>Browser & System Information</h2>
+        <p><strong>Browser Version:</strong> <span id="browserVersion"></span></p>
+        <p><strong>Platform (OS):</strong> <span id="platform"></span></p>
+        <p><strong>Java Enabled:</strong> <span id="javaEnabled"></span></p>
+        <p><strong>Screen Resolution:</strong> <span id="screenRes"></span></p>
+        <p><strong>Available Screen Size:</strong> <span id="availScreen"></span></p>
+        <p><strong>Color Depth:</strong> <span id="colorDepth"></span></p>
+        <hr>
+        <h2>Page & Navigation Info</h2>
+        <p><strong>Current URL:</strong> <span id="url"></span></p>
+        <p><strong>Hostname:</strong> <span id="hostname"></span></p>
+        <p><strong>Page Title:</strong> <span id="pageTitle"></span></p>
+        <button onclick="updateTitle()">Change Page Title</button>
+        <br><br>
+        <button onclick="location.reload()">Reload Page</button>
+        <button onclick="redirect()">Redirect to Example</button>
+        <button onclick="history.back()">Go Back</button>
+        <button onclick="history.forward()">Go Forward</button>
+    </div>
+
+    <script>
+        function initialize() {
+            document.getElementById('browserVersion').textContent = navigator.userAgent;
+            document.getElementById('platform').textContent = navigator.platform;
+            document.getElementById('javaEnabled').textContent = navigator.javaEnabled();
+            document.getElementById('screenRes').textContent = screen.width + " x " + screen.height;
+            document.getElementById('availScreen').textContent = screen.availWidth + " x " + screen.availHeight;
+            document.getElementById('colorDepth').textContent = screen.colorDepth + " bits";
+            document.getElementById('url').textContent = window.location.href;
+            document.getElementById('hostname').textContent = window.location.hostname;
+            document.getElementById('pageTitle').textContent = document.title;
+            applyBackgroundColor();
+        }
+
+        function updateTitle() {
+            let newTitle = prompt("Enter new page title:");
+            if (newTitle) {
+                document.title = newTitle;
+                document.getElementById('pageTitle').textContent = newTitle;
+            }
+        }
+
+        function redirect() {
+            window.location.href = "https://www.example.com";
+        }
+
+        function applyBackgroundColor() {
+            const width = window.innerWidth;
+            if (width < 600) {
+                document.body.style.backgroundColor = "blue";
+            } else if (width >= 600 && width <= 991) {
+                document.body.style.backgroundColor = "green";
+            } else {
+                document.body.style.backgroundColor = "orange";
+            }
+        }
+    </script>
+
+</body>
+</html>
+
